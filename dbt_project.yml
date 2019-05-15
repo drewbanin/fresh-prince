@@ -1,0 +1,22 @@
+name: 'fresh_prince'
+version: '1.0'
+
+profile: 'default'
+
+source-paths: ["models"]
+analysis-paths: ["analysis"]
+test-paths: ["tests"]
+data-paths: ["data"]
+macro-paths: ["macros"]
+
+quoting:
+  identifier: false
+
+target-path: "target"
+clean-targets:
+    - "target"
+    - "dbt_modules"
+
+models:
+  fresh_prince:
+    materialized: table

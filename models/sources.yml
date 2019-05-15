@@ -105,7 +105,7 @@ sources:
       - name: table_4
         identifier: source
 
-  - name: error_selecting_from_source
+  - name: error_selecting_from_source_and_otherwise_ok
     schema: analytics
     loaded_at_field: loaded_at
 
@@ -117,17 +117,47 @@ sources:
           warn_after: {count: 0, period: minute}
           error_after: {count: 0, period: hour}
 
-      - name: table_3
+      - name: table_2
         identifier: source
 
       - name: table_3
         identifier: source
         freshness:
-          warn_after: {count: 0, period: hour}
+          warn_after: {count: 100, period: hour}
           error_after: {count: 100, period: hour}
 
-      - name: table_4
+  - name: error_selecting_from_source_and_fail
+    schema: analytics
+    loaded_at_field: loaded_at
+
+    tables:
+      - name: table_1
+        identifier: source
+        loaded_at_field: bad_field
+        freshness:
+          warn_after: {count: 100, period: minute}
+          error_after: {count: 100, period: hour}
+
+      - name: table_2
         identifier: source
         freshness:
           warn_after: {count: 0, period: hour}
+          error_after: {count: 0, period: hour}
+
+  - name: just_error_selecting_from_source
+    schema: analytics
+    loaded_at_field: loaded_at
+
+    tables:
+      - name: table_1
+        identifier: source
+        loaded_at_field: bad_field
+        freshness:
+          warn_after: {count: 100, period: minute}
           error_after: {count: 100, period: hour}
+
+      - name: table_2
+        identifier: source
+
+      - name: table_3
+        identifier: source

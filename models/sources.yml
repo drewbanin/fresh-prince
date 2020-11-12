@@ -12,6 +12,10 @@ sources:
     tables:
       - name: table_1
         identifier: source
+        columns:
+          - name: loaded_at
+            tests:
+              - unique
 
       - name: table_2
         identifier: source

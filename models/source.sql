@@ -1,2 +1,2 @@
 
-select now() as loaded_at
+select current_timestamp() as loaded_at
